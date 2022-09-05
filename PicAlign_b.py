@@ -1,6 +1,7 @@
 from PIL import Image
 import docx
 from docx.shared import Inches,Cm
+import os
 
 
 def generate_docx(filepaths, preset):
@@ -16,12 +17,21 @@ def generate_docx(filepaths, preset):
     run = para.add_run()
 
 
-
+    exists=False
     for file in filepaths:
         img = Image.open(file)
         k = img.width/img.height
+        if k<1:
+            temp = img.transpose(Image.ROTATE_90)
+            temp.save("temp.jpg")
+            file = "temp.jpg"
+            k = temp.width/temp.height
+            exists = True
         run.add_picture(file,width=Inches(preset*k), height=Inches(preset))
         run.add_text(" ")
+        if exists:
+            os.remove("temp.jpg")
+            exists = False
 
     doc.save("PicAlign_output.docx")
 
