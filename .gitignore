@@ -2,3 +2,4 @@ __pycache__/
 build/
 dist/
 PicAlign.spec
+build.bat
