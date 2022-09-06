@@ -44,12 +44,12 @@ def open(gt):
     test = Label(gt, text="Files Selected : "+ str(len(gt.filename)))
     test.grid(row=4, column=0)
 
-    preset = IntVar()
-    preset.set(2)
+    preset = DoubleVar()
+    preset.set(2.5)
 
     modes = [
-        ("Small", 1),
-        ("Medium", 2),
+        ("Small", 1.5),
+        ("Medium", 2.5),
         ("Large", 3),
     ]
 

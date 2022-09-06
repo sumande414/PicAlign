@@ -27,7 +27,14 @@ def generate_docx(filepaths, preset):
             file = "temp.jpg"
             k = temp.width/temp.height
             exists = True
-        run.add_picture(file,width=Inches(preset*k), height=Inches(preset))
+        try:
+            run.add_picture(file,width=Inches(preset*k), height=Inches(preset))
+        except docx.image.exceptions.UnrecognizedImageError:
+            img.save("unrecognised_image.jpg")
+            file = "unrecognised_image.jpg"
+            run.add_picture(file,width=Inches(preset*k), height=Inches(preset))
+            os.remove("unrecognised_image.jpg")
+
         run.add_text(" ")
         if exists:
             os.remove("temp.jpg")
