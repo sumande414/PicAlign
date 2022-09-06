@@ -42,15 +42,17 @@ def open(gt):
     buttonfont = font.Font(family='Helvetica', size=16, weight='bold')
 
     test = Label(gt, text="Files Selected : "+ str(len(gt.filename)))
-    test.grid(row=4, column=0)
+    test.grid(row=6, column=0)
 
     preset = DoubleVar()
-    preset.set(2.5)
+    preset.set(2)
 
     modes = [
-        ("Small", 1.5),
+        ("Very Small", 1.5),
+        ("Small", 2),
         ("Medium", 2.5),
         ("Large", 3),
+        ("Very Large", 3.5)
     ]
 
     c=1
@@ -61,7 +63,7 @@ def open(gt):
 
 
     process_button = Button(gt, text="Done", font = buttonfont, command = lambda: back.generate_docx(gt.filename, preset.get()))
-    process_button.grid(row=5, column=0)
+    process_button.grid(row=7, column=0)
 
 
 
@@ -77,10 +79,10 @@ def file_wizard(prev):
     open_file_button.grid(row='0', column='0')
 
     menu_button = Button(gt, text = "Main Menu", font = buttonfont, command = lambda: home(gt))
-    menu_button.grid(row = 6, column = 0)
+    menu_button.grid(row = 8, column = 0)
 
     frame = Frame(gt, width=600, height=400)
-    frame.grid(row=0,column=1, rowspan= 7)
+    frame.grid(row=0,column=1, rowspan= 9)
 
     img2 = ImageTk.PhotoImage(Image.open(get_path("logo.jpg")))
     label = Label(frame, image = img2)
